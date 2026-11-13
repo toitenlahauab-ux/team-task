@@ -1,7 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+
 export const dynamic = 'force-dynamic'
+
 export default async function DashboardPage() {
   const supabase = await createClient()
 
@@ -52,13 +54,12 @@ export default async function DashboardPage() {
   }
 
   const totalTasks = tasks.length
-  const todoTasks = tasks.filter(t => t.status === 'todo').length
-  const inProgressTasks = tasks.filter(t => t.status === 'in_progress').length
-  const doneTasks = tasks.filter(t => t.status === 'done').length
+  const todoTasks = tasks.filter((t) => t.status === 'todo').length
+  const inProgressTasks = tasks.filter((t) => t.status === 'in_progress').length
+  const doneTasks = tasks.filter((t) => t.status === 'done').length
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-900">
@@ -72,10 +73,7 @@ export default async function DashboardPage() {
               Xin chào, {profile?.full_name || user.email}
             </span>
             <form action="/auth/signout" method="post">
-              <button
-                type="submit"
-                className="text-sm text-red-600 hover:text-red-800"
-              >
+              <button type="submit" className="text-sm text-red-600 hover:text-red-800">
                 Đăng xuất
               </button>
             </form>
@@ -83,10 +81,7 @@ export default async function DashboardPage() {
         </div>
       </header>
 
-      {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        
-        {/* Thống kê */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <div className="bg-white rounded-lg shadow p-4 text-center">
             <div className="text-2xl font-bold text-gray-900">{projects.length}</div>
